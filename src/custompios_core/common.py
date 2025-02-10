@@ -27,6 +27,10 @@ def get_image_config() -> Optional[Dict["str", Any]]:
     base_board = os.environ.get("BASE_BOARD", None)
     base_image_path = os.environ.get("BASE_IMAGE_PATH", None)
 
+    # remove any trailing spaces or line breaks
+    if base_board is not None:
+        base_board = base_board.strip()
+
     # Default to raspberrypiarmhf board in case of CustomPiOS v1
     if base_board is None:
         print("Warning: BASE_BOARD not set, defaulting to raspberrypiarmhf")
