@@ -23,6 +23,7 @@ def read_images() -> Dict[str, Dict[str,str]]:
 
 def get_image_config() -> Optional[Dict["str", Any]]:
     images = read_images()
+    print(images)
 
     base_board = os.environ.get("BASE_BOARD", None)
     base_image_path = os.environ.get("BASE_IMAGE_PATH", None)
@@ -32,9 +33,8 @@ def get_image_config() -> Optional[Dict["str", Any]]:
         print("Warning: BASE_BOARD not set, defaulting to raspberrypiarmhf")
         base_board = "raspberrypiarmhf"
 
-    if base_board is not None and base_board in images["images"]:
+    if base_board in images["images"]:
         return images["images"][base_board]
-
 
     print(f"Error: Could not find image config for board {base_board}")
     return None
