@@ -34,4 +34,7 @@ def get_image_config() -> Optional[Dict["str", Any]]:
 
     if base_board is not None and base_board in images["images"]:
         return images["images"][base_board]
+
+
+    print(f"Error: Could not find image config for board {base_board}")
     return None
