@@ -9,10 +9,18 @@ set -x
 define(){ IFS='\n' read -r -d '' ${1} || true; }
 
 CUSTOM_OS_PATH=$(dirname $(realpath -s $0))
-BASE_BOARD_FROM_CONFIG=$(bash -c "source \"${CUSTOM_PI_OS_PATH}/config\" && echo \$BASE_BOARD")
-if [ -n "$BASE_BOARD_FROM_CONFIG" ]; then
-    export BASE_BOARD="$BASE_BOARD_FROM_CONFIG"
-    echo "BASE_BOARD set to '$BASE_BOARD' from ${CUSTOM_PI_OS_PATH}/config before generate board config."
+CONFIG_FILE="${CUSTOM_PI_OS_PATH}/config"
+
+if [ -f "$CONFIG_FILE" ]; then
+    BASE_BOARD_FROM_CONFIG=$(bash -c "source \"$CONFIG_FILE\" && echo \$BASE_BOARD")
+    if [ -n "$BASE_BOARD_FROM_CONFIG" ]; then
+        export BASE_BOARD="$BASE_BOARD_FROM_CONFIG"
+        echo "BASE_BOARD set to ${BASE_BOARD} from ${CONFIG_FILE} before generating board config."
+    else
+        echo "BASE_BOARD not found in ${CONFIG_FILE}."
+    fi
+else
+    echo "Config file ${CONFIG_FILE} does not exist."
 fi
 
 define SCRIPT <<'EOF'
