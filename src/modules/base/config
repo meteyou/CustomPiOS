@@ -112,7 +112,10 @@ fi
 [ -n "$BASE_CONFIG_KEYBOARD" ] || BASE_CONFIG_KEYBOARD=default
 
 # Arch for now either armv7l, arm64 or aarch64
-[ -n "$BASE_ARCH" ] || BASE_ARCH=armv7l
+if [ -z "$BASE_ARCH" ]; then
+    echo "DEBUG: BASE_ARCH is not set. Setting default value 'armv7l'."
+    BASE_ARCH="armv7l"
+fi
 
 # If you want your variant not to have the name appending, enable this
 [ -n "$BASE_IGNORE_VARIANT_NAME" ] || BASE_IGNORE_VARIANT_NAME=no
