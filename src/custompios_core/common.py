@@ -29,6 +29,7 @@ def get_image_config() -> Optional[Dict["str", Any]]:
 
     # Default to raspberrypiarmhf board in case of CustomPiOS v1
     if base_board is None:
+        print("Warning: BASE_BOARD not set, defaulting to raspberrypiarmhf")
         base_board = "raspberrypiarmhf"
 
     if base_board is not None and base_board in images["images"]:
