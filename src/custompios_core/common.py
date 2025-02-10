@@ -37,6 +37,7 @@ def get_image_config() -> Optional[Dict["str", Any]]:
         base_board = "raspberrypiarmhf"
 
     if base_board in images["images"]:
+        print(f"Using image config for board {base_board}")
         return images["images"][base_board]
 
     print(f"Error: Could not find image config for board {base_board}")
