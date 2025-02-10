@@ -8,6 +8,7 @@ set -x
 
 define(){ IFS='\n' read -r -d '' ${1} || true; }
 
+CUSTOM_OS_PATH=$(dirname $(realpath -s $0))
 BASE_BOARD_FROM_CONFIG=$(bash -c "source \"${CUSTOM_PI_OS_PATH}/config\" && echo \$BASE_BOARD")
 if [ -n "BASE_BOARD_FROM_CONFIG" ]; then
     export BASE_BOARD="BASE_BOARD_FROM_CONFIG"
@@ -23,7 +24,6 @@ echo "Temp source file: ${EXTRA_BOARD_CONFIG}"
 source ${BUILD_SCRIPT_PATH}/common.sh
 install_cleanup_trap
 
-CUSTOM_OS_PATH=$(dirname $(realpath -s $0))
 
 source ${CUSTOM_PI_OS_PATH}/config "${1}" "${EXTRA_BOARD_CONFIG}" ${@}
 ${CUSTOM_PI_OS_PATH}/config_sanity
