@@ -8,6 +8,12 @@ set -x
 
 define(){ IFS='\n' read -r -d '' ${1} || true; }
 
+BASE_BOARD_FROM_CONFIG=$(bash -c "source \"${CUSTOM_PI_OS_PATH}/config\" && echo \$BASE_BOARD")
+if [ -n "BASE_BOARD_FROM_CONFIG" ]; then
+    export BASE_BOARD="BASE_BOARD_FROM_CONFIG"
+    echo "BASE_BOARD set to '$BASE_BOARD' from src/config before generate board config"
+fi
+
 define SCRIPT <<'EOF'
 BUILD_SCRIPT_PATH=$(dirname $(realpath -s $BASH_SOURCE))
 export EXTRA_BOARD_CONFIG=$(mktemp)
