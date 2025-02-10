@@ -14,6 +14,8 @@ if __name__ == "__main__":
     parser.add_argument('output_script', type=str, help='path to output the chroot script master')
     args = parser.parse_args()
     image_config = get_image_config()
+    print("Image config:")
+    print(image_config)
     if image_config is None:
         print("Error: Could not get image config")
         sys.exit(1)
