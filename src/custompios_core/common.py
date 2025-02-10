@@ -23,7 +23,6 @@ def read_images() -> Dict[str, Dict[str,str]]:
 
 def get_image_config() -> Optional[Dict["str", Any]]:
     images = read_images()
-    print(images)
 
     base_board = os.environ.get("BASE_BOARD", None)
     base_image_path = os.environ.get("BASE_IMAGE_PATH", None)
@@ -37,4 +36,5 @@ def get_image_config() -> Optional[Dict["str", Any]]:
         return images["images"][base_board]
 
     print(f"Error: Could not find image config for board {base_board}")
+    print(f"Available boards: {images['images'].keys()}")
     return None

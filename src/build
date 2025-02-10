@@ -28,6 +28,7 @@ BUILD_SCRIPT_PATH=$(dirname $(realpath -s $BASH_SOURCE))
 export EXTRA_BOARD_CONFIG=$(mktemp)
 ${BUILD_SCRIPT_PATH}/custompios_core/generate_board_config.py "${EXTRA_BOARD_CONFIG}"
 echo "Temp source file: ${EXTRA_BOARD_CONFIG}"
+cat ${EXTRA_BOARD_CONFIG}
 
 source ${BUILD_SCRIPT_PATH}/common.sh
 install_cleanup_trap
