@@ -24,6 +24,8 @@ def read_images() -> Dict[str, Dict[str,str]]:
 def get_image_config() -> Optional[Dict["str", Any]]:
     images = read_images()
 
+    print("get_image_config")
+
     base_board = os.environ.get("BASE_BOARD", None)
     base_image_path = os.environ.get("BASE_IMAGE_PATH", None)
 
