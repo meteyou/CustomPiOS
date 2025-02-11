@@ -12,10 +12,7 @@ CUSTOM_OS_PATH=$(dirname $(realpath -s $0))
 CONFIG_FILE="${CUSTOM_PI_OS_PATH}/config"
 
 if [ -f "$CONFIG_FILE" ]; then
-    echo "Sourcing ${CONFIG_FILE}..."
-    cat $CONFIG_FILE
-
-    BASE_BOARD_FROM_CONFIG=$(bash -c "source \"$CONFIG_FILE\" && echo \$BASE_BOARD")
+    BASE_BOARD_FROM_CONFIG=$(bash -c "source \"$CONFIG_FILE\" >/dev/null 2>&1; echo \$BASE_BOARD")
     if [ -n "$BASE_BOARD_FROM_CONFIG" ]; then
         export BASE_BOARD="$BASE_BOARD_FROM_CONFIG"
         echo "BASE_BOARD set to ${BASE_BOARD} from ${CONFIG_FILE} before generating board config."
