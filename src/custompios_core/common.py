@@ -42,6 +42,6 @@ def get_image_config() -> Optional[Dict["str", Any]]:
         print(f"Using image config for board {base_board}")
         return images["images"][base_board]
 
-    print(f"Error: Could not find image config for board \"{base_board}\"")
+    print("Error: Could not find image config for board '{}'\n".format(base_board))
     print(f"Available boards: {images['images'].keys()}")
     return None
